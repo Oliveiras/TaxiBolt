@@ -51,7 +51,7 @@
 				<h:outputLabel for="passengerBeanPassengerBirthdate" value="Birthdate:"/>
 				<h:panelGroup>
 					<h:inputText id="passengerBeanPassengerBirthdate" required="true" value="#{passengerBean.passenger.birthdate}">
-						<f:convertDateTime type="date"/>
+						<f:convertDateTime type="date" pattern="dd/MM/yyyy" />
 					</h:inputText>
 					<h:message for="passengerBeanPassengerBirthdate" styleClass="error"/>
 				</h:panelGroup>
