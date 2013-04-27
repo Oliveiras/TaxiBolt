@@ -1,21 +1,25 @@
 package com.rhcloud.oliveirasapps.taxibolt.model;
 
-import javax.persistence.Entity;
 import java.io.Serializable;
-import javax.persistence.Id;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Column;
-import javax.persistence.Version;
-import java.lang.Override;
-import java.util.Date;
+import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+
+import org.hibernate.validator.constraints.Email;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
+@SuppressWarnings("serial")
 @Entity
 public class Passenger implements Serializable
 {
@@ -44,11 +48,19 @@ public class Passenger implements Serializable
 
    @Column
    private @NotNull(message = "Email cannot be null")
+   @Email(message = "Invalid email")
    String email;
 
    @Column
    private @NotNull(message = "Password cannot be null")
+   @Size(message = "Invalid password size", min = 4)
    String password;
+
+   @Column
+   private Double latitude;
+
+   @Column
+   private Double longitude;
 
    public Long getId()
    {
@@ -152,6 +164,26 @@ public class Passenger implements Serializable
       this.password = password;
    }
 
+   public Double getLatitude()
+   {
+      return this.latitude;
+   }
+
+   public void setLatitude(final Double latitude)
+   {
+      this.latitude = latitude;
+   }
+
+   public Double getLongitude()
+   {
+      return this.longitude;
+   }
+
+   public void setLongitude(final Double longitude)
+   {
+      this.longitude = longitude;
+   }
+
    public String toString()
    {
       String result = "";
@@ -163,6 +195,10 @@ public class Passenger implements Serializable
          result += " " + email;
       if (password != null && !password.trim().isEmpty())
          result += " " + password;
+      if (latitude != null)
+         result += " " + latitude;
+      if (longitude != null)
+         result += " " + longitude;
       return result;
    }
 }

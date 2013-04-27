@@ -47,12 +47,6 @@
 							<h:message for="passengerBeanExampleEmail" styleClass="error"/>
 						</h:panelGroup>
 						<h:outputText/>
-						<h:outputLabel for="passengerBeanExamplePassword" value="Password:"/>
-						<h:panelGroup>
-							<h:inputText id="passengerBeanExamplePassword" value="#{passengerBean.example.password}"/>
-							<h:message for="passengerBeanExamplePassword" styleClass="error"/>
-						</h:panelGroup>
-						<h:outputText/>
 					</h:panelGrid>
 					<h:panelGroup styleClass="buttons">
 						<h:commandLink value="Search" action="#{passengerBean.search}" styleClass="btn btn-primary"/>
@@ -98,15 +92,6 @@
 					<h:link outcome="/passenger/view">
 						<f:param name="id" value="#{_item.id}"/>
 						<h:outputText id="itemEmail" value="#{_item.email}"/>
-					</h:link>
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Password"/>
-					</f:facet>
-					<h:link outcome="/passenger/view">
-						<f:param name="id" value="#{_item.id}"/>
-						<h:outputText id="itemPassword" value="#{_item.password}"/>
 					</h:link>
 				</h:column>
 			</h:dataTable>

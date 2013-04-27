@@ -24,7 +24,7 @@ public class PassengerEndpoint
    private EntityManager em;
 
    @POST
-   @Consumes("application/xml")
+   @Consumes("application/json")
    public Response create(Passenger entity)
    {
       em.persist(entity);
@@ -47,7 +47,7 @@ public class PassengerEndpoint
 
    @GET
    @Path("/{id:[0-9][0-9]*}")
-   @Produces("application/xml")
+   @Produces("application/json")
    public Response findById(@PathParam("id")
    Long id)
    {
@@ -60,7 +60,7 @@ public class PassengerEndpoint
    }
 
    @GET
-   @Produces("application/xml")
+   @Produces("application/json")
    public List<Passenger> listAll()
    {
       final List<Passenger> results = em.createQuery("FROM Passenger", Passenger.class).getResultList();
@@ -69,7 +69,7 @@ public class PassengerEndpoint
 
    @PUT
    @Path("/{id:[0-9][0-9]*}")
-   @Consumes("application/xml")
+   @Consumes("application/json")
    public Response update(@PathParam("id")
    Long id, Passenger entity)
    {

@@ -64,10 +64,22 @@
 				<h:outputText value="*"/>
 				<h:outputLabel for="passengerBeanPassengerPassword" value="Password:"/>
 				<h:panelGroup>
-					<h:inputText id="passengerBeanPassengerPassword" required="true" value="#{passengerBean.passenger.password}"/>
+					<h:inputText id="passengerBeanPassengerPassword" maxLength="2147483647" required="true" value="#{passengerBean.passenger.password}"/>
 					<h:message for="passengerBeanPassengerPassword" styleClass="error"/>
 				</h:panelGroup>
 				<h:outputText value="*"/>
+				<h:outputLabel for="passengerBeanPassengerLatitude" value="Latitude:"/>
+				<h:panelGroup>
+					<h:inputText id="passengerBeanPassengerLatitude" value="#{passengerBean.passenger.latitude}"/>
+					<h:message for="passengerBeanPassengerLatitude" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="passengerBeanPassengerLongitude" value="Longitude:"/>
+				<h:panelGroup>
+					<h:inputText id="passengerBeanPassengerLongitude" value="#{passengerBean.passenger.longitude}"/>
+					<h:message for="passengerBeanPassengerLongitude" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
 			</h:panelGrid>
 
 			<div class="buttons">
