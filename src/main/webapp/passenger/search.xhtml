@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value="#{passengerBean.page}"/>
+		<f:event type="preRenderView" listener="#{passengerBean.paginate}"/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Passenger entities"/>
+
+	<ui:define name="header">
+		Passenger
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Passenger entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="passengerBeanExampleName" value="Name:"/>
+						<h:panelGroup>
+							<h:inputText id="passengerBeanExampleName" value="#{passengerBean.example.name}"/>
+							<h:message for="passengerBeanExampleName" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="passengerBeanExampleMobileNumber" value="Mobile Number:"/>
+						<h:panelGroup>
+							<h:inputText id="passengerBeanExampleMobileNumber" value="#{passengerBean.example.mobileNumber}"/>
+							<h:message for="passengerBeanExampleMobileNumber" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="passengerBeanExampleEmail" value="Email:"/>
+						<h:panelGroup>
+							<h:inputText id="passengerBeanExampleEmail" value="#{passengerBean.example.email}"/>
+							<h:message for="passengerBeanExampleEmail" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="passengerBeanExamplePassword" value="Password:"/>
+						<h:panelGroup>
+							<h:inputText id="passengerBeanExamplePassword" value="#{passengerBean.example.password}"/>
+							<h:message for="passengerBeanExamplePassword" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Search" action="#{passengerBean.search}" styleClass="btn btn-primary"/>
+						<h:commandLink value="Create New" action="#{passengerBean.create}" styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="passengerBeanPageItems" styleClass="data-table" value="#{passengerBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Name"/>
+					</f:facet>
+					<h:link outcome="/passenger/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemName" value="#{_item.name}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Mobile Number"/>
+					</f:facet>
+					<h:link outcome="/passenger/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemMobileNumber" value="#{_item.mobileNumber}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Birthdate"/>
+					</f:facet>
+					<h:link outcome="/passenger/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemBirthdate" value="#{_item.birthdate}">
+							<f:convertDateTime type="date"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Email"/>
+					</f:facet>
+					<h:link outcome="/passenger/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemEmail" value="#{_item.email}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Password"/>
+					</f:facet>
+					<h:link outcome="/passenger/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemPassword" value="#{_item.password}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value="#{passengerBean}"/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>
