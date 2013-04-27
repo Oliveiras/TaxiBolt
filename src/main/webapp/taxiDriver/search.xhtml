@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value="#{taxiDriverBean.page}"/>
+		<f:event type="preRenderView" listener="#{taxiDriverBean.paginate}"/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Taxi Driver entities"/>
+
+	<ui:define name="header">
+		Taxi Driver
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Taxi Driver entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="taxiDriverBeanExampleName" value="Name:"/>
+						<h:panelGroup>
+							<h:inputText id="taxiDriverBeanExampleName" value="#{taxiDriverBean.example.name}"/>
+							<h:message for="taxiDriverBeanExampleName" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="taxiDriverBeanExampleMobileNumber" value="Mobile Number:"/>
+						<h:panelGroup>
+							<h:inputText id="taxiDriverBeanExampleMobileNumber" value="#{taxiDriverBean.example.mobileNumber}"/>
+							<h:message for="taxiDriverBeanExampleMobileNumber" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="taxiDriverBeanExampleTaxiCompany" value="Taxi Company:"/>
+						<h:panelGroup>
+							<h:inputText id="taxiDriverBeanExampleTaxiCompany" value="#{taxiDriverBean.example.taxiCompany}"/>
+							<h:message for="taxiDriverBeanExampleTaxiCompany" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="taxiDriverBeanExampleLicensePlate" value="License Plate:"/>
+						<h:panelGroup>
+							<h:inputText id="taxiDriverBeanExampleLicensePlate" value="#{taxiDriverBean.example.licensePlate}"/>
+							<h:message for="taxiDriverBeanExampleLicensePlate" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Search" action="#{taxiDriverBean.search}" styleClass="btn btn-primary"/>
+						<h:commandLink value="Create New" action="#{taxiDriverBean.create}" styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="taxiDriverBeanPageItems" styleClass="data-table" value="#{taxiDriverBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Name"/>
+					</f:facet>
+					<h:link outcome="/taxiDriver/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemName" value="#{_item.name}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Mobile Number"/>
+					</f:facet>
+					<h:link outcome="/taxiDriver/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemMobileNumber" value="#{_item.mobileNumber}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="License Plate"/>
+					</f:facet>
+					<h:link outcome="/taxiDriver/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemLicensePlate" value="#{_item.licensePlate}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value="#{taxiDriverBean}"/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>
