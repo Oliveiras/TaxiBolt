@@ -3,8 +3,3 @@
 /.forge_settings
 /.project
 /.settings
-target
-.settings/*
-!.settings/.jsdtscope
-.project
-.classpath
