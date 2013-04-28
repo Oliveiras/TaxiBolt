@@ -62,7 +62,7 @@ public class PassengerEndpoint
       {
          return Response.status(Status.NOT_FOUND).build();
       }
-      entity.setPassword(null);
+      entity.setPassword("*");
       return Response.ok(entity).build();
    }
 
@@ -72,7 +72,7 @@ public class PassengerEndpoint
    {
       final List<Passenger> results = em.createQuery("FROM Passenger", Passenger.class).getResultList();
       for (Passenger p : results) {
-		p.setPassword(null);
+		p.setPassword("*");
 	}
       return results;
    }
