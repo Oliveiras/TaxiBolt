@@ -15,7 +15,7 @@ import javax.validation.constraints.Size;
 @XmlRootElement
 @SuppressWarnings("serial")
 @Entity
-public class TaxiDriver implements Serializable
+public class TaxiDriver implements Serializable, TaxiDriverPublic
 {
 
    @Id

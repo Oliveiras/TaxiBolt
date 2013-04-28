@@ -1,17 +1,25 @@
 package com.rhcloud.oliveirasapps.rest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
-import javax.ws.rs.*;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriBuilder;
+
 import com.rhcloud.oliveirasapps.taxibolt.model.Passenger;
+import com.rhcloud.oliveirasapps.taxibolt.model.PassengerPublic;
 
 /**
  * 
@@ -51,7 +59,7 @@ public class PassengerEndpoint
    public Response findById(@PathParam("id")
    Long id)
    {
-      Passenger entity = em.find(Passenger.class, id);
+      PassengerPublic entity = em.find(Passenger.class, id);
       if (entity == null)
       {
          return Response.status(Status.NOT_FOUND).build();
@@ -61,10 +69,14 @@ public class PassengerEndpoint
 
    @GET
    @Produces("application/json")
-   public List<Passenger> listAll()
+   public List<PassengerPublic> listAll()
    {
       final List<Passenger> results = em.createQuery("FROM Passenger", Passenger.class).getResultList();
-      return results;
+      final List<PassengerPublic> publicResult = new ArrayList<PassengerPublic>();
+      for (Passenger p : results) {
+		publicResult.add(p);
+	}
+      return publicResult;
    }
 
    @PUT

@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @SuppressWarnings("serial")
 @Entity
-public class Passenger implements Serializable
+public class Passenger implements Serializable, PassengerPublic
 {
 
    @Id
