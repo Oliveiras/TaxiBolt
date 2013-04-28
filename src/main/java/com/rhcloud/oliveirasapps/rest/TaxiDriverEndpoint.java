@@ -62,7 +62,7 @@ public class TaxiDriverEndpoint
       {
          return Response.status(Status.NOT_FOUND).build();
       }
-      entity.setPassword("*");
+      //entity.setPassword("*");
       return Response.ok(entity).build();
    }
 
@@ -71,9 +71,9 @@ public class TaxiDriverEndpoint
    public List<TaxiDriver> listAll()
    {
       final List<TaxiDriver> results = em.createQuery("FROM TaxiDriver", TaxiDriver.class).getResultList();
-      for (TaxiDriver t : results) {
-		t.setPassword("*");
-	}
+      //for (TaxiDriver t : results) {
+		//t.setPassword("*");
+	//}
       return results;
    }
 
